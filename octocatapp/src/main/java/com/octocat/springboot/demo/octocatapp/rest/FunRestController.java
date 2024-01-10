@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FunRestController {
     // expose "/" that return "Hello World"
+
+    // Inject the properties from APPLICATION.PROPERTIES file...
     @Value("${db.connectionString}")
     private String dbconnectionString;
 
