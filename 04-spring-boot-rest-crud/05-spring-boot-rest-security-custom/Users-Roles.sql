@@ -6,14 +6,17 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users(
     username NVARCHAR(50) PRIMARY KEY NOT NULL,
-    password NVARCHAR(50) NOT NULL,
-    enables TINYINT NOT NULL
+    password NVARCHAR(68) NOT NULL,
+    enabled TINYINT NOT NULL
 );
 
+-- 
+-- Fro Bcrypting the password: https://www.bcryptcalculator.com/
+-- 
 INSERT INTO users VALUES
-    ('john','{noop}test123',1),
-    ('mary','{noop}test123',1),
-    ('susan','{noop}test123',1)
+    ('john','{bcrypt}$2a$10$GquiMbLFCnwsDEzUKIdDROsW6NxqrvHwbLxpx3r0Wktxixlr8Yhmq',1),
+    ('mary','{bcrypt}$2a$10$GquiMbLFCnwsDEzUKIdDROsW6NxqrvHwbLxpx3r0Wktxixlr8Yhmq',1),
+    ('susan','{bcrypt}$2a$10$GquiMbLFCnwsDEzUKIdDROsW6NxqrvHwbLxpx3r0Wktxixlr8Yhmq',1)
 
 CREATE TABLE authorities(
     username NVARCHAR(50) NOT NULL,
