@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymelead.org">
+
+<head>
+    <title>Thymeleaf Demo - Input Form</title>
+</head>
+<body>
+    <form th:action="@{/processForm}" method="get">
+        <input type="text" name="studentName"
+                placeholder="Enter your name..." />
+
+        <input type="submit" />
+    </form>
+</body>
+</html>
