@@ -18,9 +18,9 @@
         </select>
         <br><br>
         Select Programming Language:
-        <input type="radio" th:field="*{favoriteLanguage}" th:value="Go">Go &nbsp;
-        <input type="radio" th:field="*{favoriteLanguage}" th:value="Java">Java &nbsp;
-        <input type="radio" th:field="*{favoriteLanguage}" th:value="Python">Python &nbsp;
+        <input type="radio" th:each=" language : ${favoriteLanguage}" th:field="*{favoriteLanguage}" th:value="${language}" th:text="${language}"> &nbsp;
+<!--        <input type="radio" th:field="*{favoriteLanguage}" th:value="Java">Java &nbsp;-->
+<!--        <input type="radio" th:field="*{favoriteLanguage}" th:value="Python">Python &nbsp;-->
 
         <br><br>
         <input type="submit" value="Submit">
