@@ -21,9 +21,13 @@
         <input type="radio" th:each=" language : ${favoriteLanguage}" th:field="*{favoriteLanguage}" th:value="${language}" th:text="${language}"> &nbsp;
 <!--        <input type="radio" th:field="*{favoriteLanguage}" th:value="Java">Java &nbsp;-->
 <!--        <input type="radio" th:field="*{favoriteLanguage}" th:value="Python">Python &nbsp;-->
+        <br><br>
+        Favorite Operating Systems:
+        <input type="checkbox" th:each="system : ${operatingSystem}" th:field="*{operatingSystem}" th:value="${system}" th:text="${system}">&nbsp;
 
         <br><br>
-        <input type="submit" value="Submit">
+         <input type="submit" value="Submit">
+
     </form>
 </body>
 </html>
