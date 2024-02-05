@@ -45,6 +45,14 @@ public class AppDAOImpl implements AppDAO{
             return;
         }
 
+        // get the courses
+        List<Course> courses = tempInstructor.getCourses();
+
+        // break the association of all the courses for the instructor
+        for (Course c : courses){
+            c.setInstructor(null);
+        }
+
         // delete the instructor
         entityManager.remove(tempInstructor);
         System.out.println("Deleted");
@@ -88,6 +96,52 @@ public class AppDAOImpl implements AppDAO{
         List<Course> courses = query.getResultList();
 
         return courses;
+    }
+
+    @Override
+    public Instructor findInstructorByIdJoinFetch(int theId) {
+
+        // create query
+        TypedQuery<Instructor> query = entityManager.createQuery(
+                "select i from Instructor i "
+                + "JOIN FETCH i.courses "
+                        + "JOIN FETCH i.instructorDetail "
+                + "where i.id = :data", Instructor.class
+        );
+        query.setParameter("data", theId);
+
+        // execute the query
+        Instructor instructor = query.getSingleResult();
+
+        return instructor;
+    }
+
+    @Override
+    @Transactional
+    public void update(Instructor tempInstructor) {
+
+        entityManager.merge(tempInstructor);
+    }
+
+    @Override
+    @Transactional
+    public void update(Course tempCourse) {
+
+        entityManager.merge(tempCourse);
+    }
+
+    @Override
+    public Course findCourseById(int theId) {
+        return entityManager.find(Course.class, theId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCourseById(int theId) {
+
+        // retrieve the course
+        Course course = entityManager.find(Course.class, theId);
+        entityManager.remove(course);
     }
 
 

@@ -24,13 +24,72 @@ public class CruddemoApplication {
 		return runner ->{
 			 // createInstructor(appDAO);
 			// findInstructorById(appDAO);
-			// deleteInstructorById(appDAO);
+			 // deleteInstructorById(appDAO);
 			// findInstructorDetailById(appDAO);
 			// deleteInstructorDetailById(appDAO);
 			// createInstructorWithCourses(appDAO);
-			//findInstructorWithCourses(appDAO);
-			findCoursesForInstructor(appDAO);
+			// findInstructorWithCourses(appDAO);
+			// findCoursesForInstructor(appDAO);
+			// findInstructorWithCoursesWithJoinFethc(appDAO);
+			// updateInstructor(appDAO);
+			// updateCourse(appDAO);
+			deleteCourseById(appDAO);
+
 		};
+	}
+
+	private void deleteCourseById(AppDAO appDAO) {
+
+		int theId = 1;
+
+		System.out.println("Deleting the course: " + theId);
+		appDAO.deleteCourseById(theId);
+		System.out.println("Done");
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int theId = 1;
+
+		// find the course
+		System.out.println("Fiding the course: "+ theId);
+		Course course = appDAO.findCourseById(theId);
+
+		// update the course
+		System.out.println("Updating: " + theId);
+		course.setTitle("The Interview Guide!");
+
+		appDAO.update(course);
+		System.out.println("Done");
+	}
+
+	private void updateInstructor(AppDAO appDAO) {
+
+		int theId = 1;
+
+		// find the isntructor
+		System.out.println("Find the instructor: " + theId);
+		Instructor instructor = appDAO.findInstructorById(theId);
+
+		// update the instructor
+		System.out.println("Updating: "+ theId);
+
+		instructor.setLastName("TESTER");
+		appDAO.update(instructor);
+
+		System.out.println("Done!");
+	}
+
+	private void findInstructorWithCoursesWithJoinFethc(AppDAO appDAO) {
+
+		int theId = 1;
+		System.out.println("Finding instructor id: "+theId);
+
+		Instructor tempInstructor = appDAO.findInstructorByIdJoinFetch(theId);
+
+		System.out.println("tempInstructor: "+ tempInstructor);
+
+		System.out.println("The associated courses: " + tempInstructor.getCourses());
+		System.out.println("Done!");
 	}
 
 	private void findCoursesForInstructor(AppDAO appDAO) {
