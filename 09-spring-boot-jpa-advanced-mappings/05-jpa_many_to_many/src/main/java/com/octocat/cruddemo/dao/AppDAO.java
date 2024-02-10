@@ -3,6 +3,7 @@ package com.octocat.cruddemo.dao;
 import com.octocat.cruddemo.entity.Course;
 import com.octocat.cruddemo.entity.Instructor;
 import com.octocat.cruddemo.entity.InstructorDetail;
+import com.octocat.cruddemo.entity.Student;
 
 import java.util.List;
 
@@ -20,4 +21,8 @@ public interface AppDAO {
     void deleteCourseById(int theId);
     void save(Course theCourse);
     Course findCourseAndReviewsByCourseId(int theId);
+    Course findCourseAndStudentByCourseId(int theId);
+    Student findStudentAndCoursesByStudentId(int theId);
+    void update(Student tempStudent);
+    void deleteStudentById(int theId);
 }
