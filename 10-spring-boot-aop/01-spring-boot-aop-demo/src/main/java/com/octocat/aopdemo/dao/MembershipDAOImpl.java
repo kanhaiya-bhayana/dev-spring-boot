@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MembershipDAOImpl implements MembershipDAO{
     @Override
-    public void addSillyMember() {
+    public boolean addSillyMember() {
 
         System.out.println(getClass() + ": Doing my db work: Adding a MEMBERSHIP account");
+        return true;
     }
 }
