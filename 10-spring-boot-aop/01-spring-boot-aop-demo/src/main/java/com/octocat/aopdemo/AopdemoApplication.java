@@ -1,5 +1,6 @@
 package com.octocat.aopdemo;
 
+import com.octocat.aopdemo.dao.AccountDAO;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,11 +14,24 @@ public class AopdemoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(String []args){
+	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO){
 
 		return runner ->{
-			System.out.println("Hola");
+
+			demoTheBeforeAdvice(theAccountDAO);
 		};
+	}
+
+	private void demoTheBeforeAdvice(AccountDAO theAccountDAO) {
+
+		// call the business method
+		theAccountDAO.addAccount();
+
+		// do it again
+		System.out.println("\n let's call it again!\n");
+
+		// call the business method
+		theAccountDAO.addAccount();
 	}
 
 }
