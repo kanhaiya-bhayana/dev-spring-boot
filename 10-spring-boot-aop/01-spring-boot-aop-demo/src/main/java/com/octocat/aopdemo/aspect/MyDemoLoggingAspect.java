@@ -13,7 +13,7 @@ public class MyDemoLoggingAspect {
     // let's start with a @Before advice
 
     // @Before("execution(public void add*())")
-    @Before("execution(* add*(com.octocat.aopdemo.Account, ..))") // remember always give Fully-qualified class name in the parameter
+    @Before("execution(* add*(..))") // remember always give Fully-qualified class name in the parameter
     public void beforeAddAccount(){
 
         System.out.println("\n =========> Executing @Before advice on addAccount()");
