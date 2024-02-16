@@ -1,6 +1,8 @@
 package com.octocat.aopdemo.dao;
 
+import com.octocat.aopdemo.Account;
+
 public interface AccountDAO {
 
-    void addAccount();
+    void addAccount(Account theAccount);
 }
