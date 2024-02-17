@@ -31,7 +31,29 @@ public class MyDemoLoggingAspect {
 
         // print out the results of the method call
         System.out.println("======> result is: " + result);
+
+        // let's post-process the data ... let's modify it
+
+        // convert the account names to uppercase
+        convertAccountNamesToTupperCase(result);
+
+        System.out.println("======> result is: " + result);
     }
+
+    private void convertAccountNamesToTupperCase(List<Account> result) {
+
+        // loop through accounts
+        for (Account acc : result){
+
+        // get uppercase version of name
+            String name = acc.getName().toUpperCase();
+
+        // update the name on the account
+            acc.setName(name);
+
+        }
+    }
+
     @Before("com.octocat.aopdemo.aspect.AopExpressions.forDaoPackageNoGetterSetter()")
     public void beforeAddAccount(JoinPoint theJoinPoint){
 
