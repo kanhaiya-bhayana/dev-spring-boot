@@ -2,6 +2,7 @@ package com.octocat.aopdemo;
 
 import com.octocat.aopdemo.dao.AccountDAO;
 import com.octocat.aopdemo.dao.MembershipDAO;
+import com.octocat.aopdemo.service.TrafficFortunrService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,15 +18,48 @@ public class AopdemoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO){
+	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO,
+											   MembershipDAO theMembershipDAO,
+											   TrafficFortunrService theTrafficFortuneService){
+
 
 		return runner ->{
 
 			// demoTheBeforeAdvice(theAccountDAO,theMembershipDAO);
 			// demoTheAfterReturningAdcvice(theAccountDAO);
 			// demoTheAfterThrowingAdvice(theAccountDAO);
-			demoTheAfterAdvice(theAccountDAO);
+			// demoTheAfterAdvice(theAccountDAO);
+			// demoTheAroundAdvice(theTrafficFortuneService);
+			demoTheAroundAdviceHandleException(theTrafficFortuneService);
+			
 		};
+	}
+
+	private void demoTheAroundAdviceHandleException(TrafficFortunrService theTrafficFortuneService) {
+
+		System.out.println("Main program: demoTheAroundAdvice");
+
+		System.out.println("Calling getFortune()");
+		boolean tripWire = true;
+
+		String data = theTrafficFortuneService.getFortune(tripWire);
+
+		System.out.println("My fortune is: "+ data);
+
+		System.out.println("Finished");
+	}
+
+	private void demoTheAroundAdvice(TrafficFortunrService theTrafficFortuneService) {
+
+		System.out.println("Main program: demoTheAroundAdvice");
+
+		System.out.println("Calling getFortune()");
+
+		String data = theTrafficFortuneService.getFortune();
+
+		System.out.println("My fortune is: "+ data);
+
+		System.out.println("Finished");
 	}
 
 	private void demoTheAfterAdvice(AccountDAO theAccountDAO) {
